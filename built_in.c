@@ -7,7 +7,7 @@
  * Description:
  *   This function checks if the provided command is a built-in command and
  *   executes the corresponding action. Supported built-in commands include
- *   "exit," "env," and "cd."
+ *   "env" "cd" and "exit"
  *
  * Return:
  *   Returns 1 if a built-in command is executed, 0 otherwise.
@@ -15,18 +15,18 @@
 int built_in_cmd(char **args, int *progStatus)
 {
 int isFlagged = 1;
-if (custom_strcmp(args[0], "exit") == 1)
-{
-closing(args, *progStatus);
-isFlagged = 0;
-}
-else if (custom_strcmp(args[0], "env") == 1)
+if (custom_strcmp(args[0], "env") == 1)
 {
 display_env();
 isFlagged = 0;
 }
 else if (custom_strcmp(args[0], "cd") == 1)
 {
+isFlagged = 0;
+}
+else if (custom_strcmp(args[0], "exit") == 1)
+{
+closing(args, *progStatus);
 isFlagged = 0;
 }
 return (isFlagged);

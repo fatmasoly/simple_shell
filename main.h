@@ -48,8 +48,6 @@ char *custom_strdup(char *source);
 int custom_strcmp(const char *string1, const char *string2);
 char *custom_strcpy(char *destination, char *source);
 char *custom_strcat(char *destination, char *source);
-char *custom_strncpy(char *destination, char *source, int limit);
-char *custom_strncat(char *destination, char *source, int limit);
 
 char **splitString(char *str, char *delims);
 void execute_command_helper(char **arguments, int *status);

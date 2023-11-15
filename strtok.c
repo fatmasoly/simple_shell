@@ -14,11 +14,15 @@ if (destination == NULL)
 return (source);
 if (source == NULL)
 return (destination);
-for (; destination[destIndex] != '\0' ; destIndex++)
-destination[destIndex] = '\0';
-for (; source[sourceIndex] != '\0' ; destIndex++, sourceIndex++)
+while (destination[destIndex] != '\0')
+{
+destIndex++;
+}
+while (source[sourceIndex] != '\0')
 {
 destination[destIndex] = source[sourceIndex];
+destIndex++;
+sourceIndex++;
 }
 destination[destIndex] = source[sourceIndex];
 return (destination);
