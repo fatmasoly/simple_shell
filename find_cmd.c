@@ -22,15 +22,18 @@ char *find_in_path = NULL;
 char **path_content = NULL;
 if (!get_path)
 return (NULL);
+/*Split the PATH variable into an array of strings*/
 path_content = splitString(get_path, ":\t\n");
 if (!path_content)
 return (NULL);
 for (; path_content[index]; ++index)
 {
+/*Allocate memory for the full path of the command*/
 find_in_path = malloc(custom_strlen(path_content[index])
 + custom_strlen(cmd) + 2);
 if (!find_in_path)
 return (NULL);
+/*Construct the full path by concatenating directory and command*/
 custom_strcpy(find_in_path, path_content[index]);
 custom_strcat(find_in_path, "/");
 custom_strcat(find_in_path, cmd);

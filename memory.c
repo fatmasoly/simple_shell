@@ -12,7 +12,9 @@ void release_memory(char **items)
 int index = 0;
 if (items == NULL)
 return;
+/*Loop through each element in the array*/
 for (index = 0; items[index] != NULL; ++index)
+/*Free the memory allocated for the current string*/
 free(items[index]);
 free(items);
 }
@@ -32,6 +34,7 @@ void *_resize(void *old_ptr, unsigned int size_before, unsigned int size_after)
 {
 unsigned int index;
 void *new_pointer = NULL;
+/*Check if the sizes are equal, no need to resize*/
 if (size_after == size_before)
 return (old_ptr);
 if (size_after == 0)
@@ -40,6 +43,7 @@ if (old_ptr != NULL)
 free(old_ptr);
 return (NULL);
 }
+/*Check if the old pointer is NULL, allocate new memory*/
 if (!old_ptr)
 {
 new_pointer = malloc(size_after);
@@ -52,6 +56,7 @@ if (size_after > size_before)
 new_pointer = malloc(size_after);
 if (new_pointer == NULL)
 return (NULL);
+/*Copy content from old pointer to new pointer*/
 while (index < size_before && index < size_after)
 {
 *((char *)new_pointer + index) = *((char *)old_ptr + index);

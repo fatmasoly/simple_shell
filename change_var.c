@@ -27,17 +27,22 @@ if (!pidString || !end_Str)
 {
 /* memory allocation error */
 }
+/*Copy characters after "$$" to end_Str*/
 for (; str[index] != '\0'; ++index)
 end_Str[j++] = str[index++];
 end_Str[j] = '\0';
+/*Convert processID to string*/
 convert_int(pidString, processID);
+/*Calculate the size for the new string*/
 size = custom_strlen(pidString) + custom_strlen(end_Str) + 1;
 free(str);
 str = (char *)malloc(sizeof(char) * size);
+/*Copy pidString to the new string*/
 custom_strcpy(str, pidString);
 custom_strcat(str, end_Str);
 free(pidString);
 free(end_Str);
+/*Return the newly allocated string with replaced "$$"*/
 return (str);
 }
 /**
@@ -68,16 +73,19 @@ if (!statusString || !end_Str)
 {
 /* memory allocation error */
 }
+/*Copy characters after "$?" to end_Str*/
 for (; str[index] != '\0'; ++index)
 {
 end_Str[j++] = str[index++];
 }
 end_Str[j] = '\0';
+/*Convert currentStatus to string*/
 convert_int(statusString, currentStatus);
 size = custom_strlen(statusString) + custom_strlen(end_Str) + 1;
 free(str);
 str = (char *)malloc(sizeof(char) * size);
 custom_strcpy(str, statusString);
+/*Concatenate end_Str to the new string*/
 custom_strcat(str, end_Str);
 free(statusString);
 free(end_Str);
@@ -108,11 +116,13 @@ char *end_Str = NULL;
 end_Str = (char *)malloc(sizeof(char) * 600);
 if (end_Str == NULL)
 return (str);
+/*Copy characters after the reference to end_Str*/
 for (; str[index] != '\0'; ++index)
 {
 end_Str[j++] = str[index++];
 }
 end_Str[j] = '\0';
+/*Get the value of the environmental variable*/
 envString = _getenv(end_Str);
 if (!envString)
 {
@@ -122,6 +132,7 @@ str = (char *)malloc(sizeof(char) * 2);
 str[0] = '\0';
 return (str);
 }
+/*Calculate the size for the new string*/
 size = strlen(envString) + 1;
 free(str);
 str = (char *)malloc(sizeof(char) * size);
@@ -150,11 +161,13 @@ int i = 0;
 int digit = 0;
 char a;
 b = n;
+/*Loop to calculate the number of digits in the number*/
 for (; b >= 10; b /= 10, i++)
 {
 for (; i >= 0; i--)
 {
 digit = n / the_power(10, i);
+/*Adjust ASCII value to get the character representation of the digit*/
 if (i == 0 && isNegative == 1)
 a = (digit % 10) + '1';
 else
@@ -180,11 +193,13 @@ array[j] = '\0';
 int the_power(int base, int exponent)
 {
 int result = base;
+/*Check if the exponent is 0, in which case the result is 1*/
 if (exponent == 0)
 {
 base = 1;
 return (base);
 }
+/*Loop to calculate the power by multiplying the base repeatedly*/
 while (--exponent)
 base *= result;
 return (base);

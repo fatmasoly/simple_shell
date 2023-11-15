@@ -19,8 +19,10 @@ char *tok;
 int wordCount = 0;
 char *strCopy;
 strCopy = custom_strdup(str);
+/*Allocate memory for a copy of the input string*/
 stringArray = malloc(sizeof(char *) * 100);
 tok = strtok(strCopy, delims);
+/*Loop through the tokens and store them in the array of strings*/
 for (; tok != NULL ; wordCount++)
 {
 stringArray[wordCount] = malloc(sizeof(char) * custom_strlen(tok) + 1);
@@ -29,5 +31,6 @@ tok = strtok(NULL, delims);
 }
 free(strCopy);
 stringArray[wordCount] = NULL;
+/*Return the array of strings*/
 return (stringArray);
 }

@@ -14,10 +14,12 @@ if (destination == NULL)
 return (source);
 if (source == NULL)
 return (destination);
+/*Find the end of the destination string*/
 while (destination[destIndex] != '\0')
 {
 destIndex++;
 }
+/*Copy characters from the source string to the destination string*/
 while (source[sourceIndex] != '\0')
 {
 destination[destIndex] = source[sourceIndex];
@@ -25,6 +27,7 @@ destIndex++;
 sourceIndex++;
 }
 destination[destIndex] = source[sourceIndex];
+/*Return the concatenated string (destination)*/
 return (destination);
 }
 

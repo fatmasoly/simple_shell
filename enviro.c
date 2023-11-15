@@ -24,18 +24,22 @@ if (environ == NULL)
 {
 return (-1);
 }
+/*Iterate through the 'environ' array*/
 for (index = 0; environ[index]; ++index)
 {
+/*Skip NULL entries in 'environ'*/
 if (environ[index] == NULL)
 {
 continue;
 }
+/*Duplicate the environment entry for tokenization*/
 environmentCopy = strdup(environ[index]);
 if (environmentCopy == NULL)
 {
 perror("Error in strdup");
 exit(EXIT_FAILURE);
 }
+/*Tokenize the entry to get the current variable name*/
 currentToken = strtok(environmentCopy, "=");
 if (currentToken != NULL && custom_strcmp(currentToken, nameToFind) != 0)
 {
@@ -69,9 +73,12 @@ char *environmentCopy = NULL;
 int Index = find_in_env(nameToFind);
 if (environ[Index] == NULL)
 return (NULL);
+/*Duplicate the environment entry for further processing*/
 environmentCopy = strdup(environ[Index]);
+/*Tokenize the entry to get the environment variable's value*/
 strtok(environmentCopy, "=");
 envValue = strdup(strtok(NULL, "="));
+/*Free the duplicated entry*/
 free(environmentCopy);
 return (envValue);
 }

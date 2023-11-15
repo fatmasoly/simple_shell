@@ -15,15 +15,18 @@
 int built_in_cmd(char **args, int *progStatus)
 {
 int isFlagged = 1;
+/*Check if the command is "env"*/
 if (custom_strcmp(args[0], "env") == 1)
 {
 display_env();
 isFlagged = 0;
 }
+/*Check if the command is "cd"*/
 else if (custom_strcmp(args[0], "cd") == 1)
 {
 isFlagged = 0;
 }
+/*Check if the command is "exit"*/
 else if (custom_strcmp(args[0], "exit") == 1)
 {
 closing(args, *progStatus);
@@ -52,7 +55,9 @@ if (!arguments || !arguments[1])
 release_memory(arguments);
 exit(status);
 }
+/*Convert the argument to an integer*/
 number = custom_atoi(arguments[1]);
+/*Check if the conversion was successful*/
 if (number >= 0)
 {
 release_memory(arguments);
@@ -62,6 +67,7 @@ else
 {
 perror("Invalid number");
 release_memory(arguments);
+/*Default exit status in case of an error*/
 exit(2);
 }
 }
@@ -78,10 +84,12 @@ char newline = '\n';
 int index = 0;
 for (index = 0; *(environ + index) != NULL; ++index)
 {
+/*Write the current environment variable to stdout*/
 if (write(1, *(environ + index), strlen(*(environ + index))) == -1)
 {
 perror("Error occurred while writing to stdout");
 }
+/*Write a newline character to stdout*/
 if (write(1, &newline, 1) == -1)
 {
 perror("Error occurred while writing newline character");

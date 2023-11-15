@@ -29,14 +29,18 @@ char *pmt = "$ ";
 for (;;)
 {
 buffer = NULL, arguments = NULL, buff_size = 0;
+/*Print the prompt ('$ ')*/
 if (write(1, pmt, 2) == -1)
 {
 perror("Error writing to file descriptor");
 exit(1);
 }
+/*Read a line from standard input*/
 if (rd_getline(&buffer, &buff_size, STDIN_FILENO, 1) == -1)
 exit(0);
+/*Split the line into an array of strings*/
 arguments = splitString(buffer, " \n\t");
+/*Replace specific tokens in the array of strings*/
 arguments = change_to(arguments, status);
 free(buffer);
 if (built_in_cmd(arguments, &status))
@@ -46,6 +50,7 @@ execute_command_helper(arguments, &status);
 release_memory(arguments);
 ++line_num;
 }
+/*Close the shell*/
 closing(NULL, status);
 }
 /**
@@ -68,6 +73,7 @@ closing(NULL, status);
 void execute_command_helper(char **arguments, int *status)
 {
 char *cmd = NULL;
+/*Check if the command exists and is executable*/
 if (arguments[0] && access(arguments[0], F_OK | X_OK) == 0)
 {
 cmd_execution(arguments[0], arguments, status);
@@ -78,15 +84,18 @@ else if (arguments[0] == NULL)
 }
 else
 {
+/*Find the full path of the command*/
 cmd = _find_cmd(arguments[0]);
 if (cmd == NULL)
 {
 perror("Command not found");
+/*Set status to indicate command not found*/
 *status = 127;
 }
 else
 {
 cmd_execution(cmd, arguments, status);
+/*Free the memory allocated for the full path of the command*/
 free(cmd);
 }
 }

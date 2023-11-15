@@ -17,16 +17,19 @@ int signFlag = 0;
 unsigned int number = 0;
 if (str == NULL)
 return (0);
+/*Skip leading non-digit characters and handle sign*/
 while (str[index] != '\0' && (str[index] > '9' || str[index] < '0'))
 {
 if (str[index] == '-')
 ++count;
 ++index;
 }
+/*Convert remaining digits to integer, handling overflow*/
 while (str[index] != '\0' && str[index] <= '9' && str[index] >= '0')
 {
 number += str[index] - '0';
 signFlag = 0;
+/*Check for integer overflow*/
 if (number < (INT_MAX / 10 + 2))
 {
 number *= 10;
@@ -57,16 +60,20 @@ char *duplicate;
 unsigned int index = 0, length = 0;
 if (!source)
 return (NULL);
+/*Calculate the length of the input string*/
 while (source[length] != '\0')
 length++;
+/*Allocate memory for the duplicated string*/
 duplicate = (char *)malloc((length + 1) * sizeof(char));
 if (duplicate == NULL)
 return (NULL);
+/*Copy characters from source to duplicate*/
 while (index <= length)
 {
 duplicate[index] = source[index];
 ++index;
 }
+/*Return the duplicated string*/
 return (duplicate);
 }
 /**
@@ -85,6 +92,7 @@ int custom_strcmp(const char *string1, const char *string2)
 int index = 0, result = 1;
 if (string1 == NULL || string2 == NULL)
 return (0);
+/*Compare characters in the strings*/
 while (string1[index])
 {
 if (string1[index] != string2[index])
@@ -94,6 +102,7 @@ break;
 }
 index++;
 }
+/*Return the result of the comparison*/
 return (result);
 }
 /**
@@ -110,8 +119,10 @@ int custom_strlen(char *str)
 int count = 0;
 if (str == NULL)
 return (0);
+/*Count characters in the string*/
 while (str[count] != '\0')
 count++;
+/*Return the length of the string*/
 return (count);
 }
 /**
@@ -131,12 +142,14 @@ int destIndex = 0;
 int sourceIndex = 0;
 if (source == NULL || destination == NULL)
 return (NULL);
+/*Copy characters from source to destination*/
 while (source[sourceIndex] != '\0')
 {
 destination[destIndex] = source[sourceIndex];
 destIndex++;
 sourceIndex++;
 }
+/*Copy the null terminator to the destination string*/
 destination[destIndex] = source[sourceIndex];
 return (destination);
 }
