@@ -20,12 +20,12 @@ int wordCount = 0;
 char *strCopy;
 strCopy = custom_strdup(str);
 stringArray = malloc(sizeof(char *) * 100);
-tok = custom_strtok(strCopy, delims);
+tok = strtok(strCopy, delims);
 for (; tok != NULL ; wordCount++)
 {
 stringArray[wordCount] = malloc(sizeof(char) * custom_strlen(tok) + 1);
 custom_strcpy(stringArray[wordCount], tok);
-tok = custom_strtok(NULL, delims);
+tok = strtok(NULL, delims);
 }
 free(strCopy);
 stringArray[wordCount] = NULL;

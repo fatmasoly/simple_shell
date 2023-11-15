@@ -27,8 +27,6 @@ char **change_to(char **arguments, int current_status);
 
 ssize_t rd_getline
 (char **line, size_t *line_size, int file_de, int reset_flag);
-ssize_t read_from_buffer(int file_desc, char *buffer, int reset_flag);
-ssize_t process_line(char *line, const char *buffer, size_t *char_index);
 
 void handle_interrupt(int sig);
 void release_memory(char **items);
@@ -52,7 +50,7 @@ char *custom_strcpy(char *destination, char *source);
 char *custom_strcat(char *destination, char *source);
 char *custom_strncpy(char *destination, char *source, int limit);
 char *custom_strncat(char *destination, char *source, int limit);
-char *custom_strtok(char *str, char *delims);
+
 char **splitString(char *str, char *delims);
 void execute_command_helper(char **arguments, int *status);
 #endif

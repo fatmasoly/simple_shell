@@ -35,7 +35,7 @@ if (environmentCopy == NULL) {
 perror("Error in strdup");
 exit(EXIT_FAILURE);
 }
-currentToken = custom_strtok(environmentCopy, "=");
+currentToken = strtok(environmentCopy, "=");
 if (currentToken != NULL && custom_strcmp(currentToken, nameToFind) != 0)
 {
 free(environmentCopy);
@@ -69,8 +69,8 @@ int Index = find_in_env(nameToFind);
 if (environ[Index] == NULL)
 return (NULL);
 environmentCopy = strdup(environ[Index]);
-custom_strtok(environmentCopy, "=");
-envValue = strdup(custom_strtok(NULL, "="));
+strtok(environmentCopy, "=");
+envValue = strdup(strtok(NULL, "="));
 free(environmentCopy);
 return (envValue);
 }

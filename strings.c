@@ -12,9 +12,9 @@
 int custom_atoi(char *str)
 {
 int index = 0;
-unsigned int number = 0;
 int count = 0;
 int signFlag = 0;
+unsigned int number = 0;
 if (str == NULL)
 return (0);
 while (str[index] != '\0' && (str[index] > '9' || str[index] < '0'))
@@ -55,10 +55,10 @@ char *custom_strdup(char *source)
 {
 char *duplicate;
 unsigned int index = 0, length = 0;
-if (source == NULL)
+if (!source)
 return (NULL);
 while (source[length] != '\0')
-++length;
+length++;
 duplicate = (char *)malloc((length + 1) * sizeof(char));
 if (duplicate == NULL)
 return (NULL);
@@ -82,7 +82,7 @@ return (duplicate);
  */
 int custom_strcmp(const char *string1, const char *string2)
 {
-int result = 1, index = 0;
+int index = 0, result = 1;
 if (string1 == NULL || string2 == NULL)
 return (0);
 while (string1[index])
@@ -92,7 +92,7 @@ if (string1[index] != string2[index])
 result = 0;
 break;
 }
-++index;
+index++;
 }
 return (result);
 }
@@ -111,7 +111,7 @@ int count = 0;
 if (str == NULL)
 return (0);
 while (str[count] != '\0')
-++count;
+count++;
 return (count);
 }
 /**
@@ -134,8 +134,8 @@ return (NULL);
 while (source[sourceIndex] != '\0')
 {
 destination[destIndex] = source[sourceIndex];
-++destIndex;
-++sourceIndex;
+destIndex++;
+sourceIndex++;
 }
 destination[destIndex] = source[sourceIndex];
 return (destination);

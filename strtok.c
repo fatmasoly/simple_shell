@@ -14,26 +14,13 @@ if (destination == NULL)
 return (source);
 if (source == NULL)
 return (destination);
-while (destination[destIndex] != '\0')
-++destIndex;
-while (source[sourceIndex] != '\0')
+for (; destination[destIndex] != '\0' ; destIndex++)
+destination[destIndex] = '\0';
+for (; source[sourceIndex] != '\0' ; destIndex++, sourceIndex++)
 {
 destination[destIndex] = source[sourceIndex];
-++destIndex;
-++sourceIndex;
 }
 destination[destIndex] = source[sourceIndex];
 return (destination);
-}
-/**
- * custom_strtok - Breaks a string into tokens.
- * @str: Pointer to the string to tokenize.
- * @delims: Pointer to the delimiters string.
- *
- * Return: Pointer to the next token or NULL if no more tokens.
- */
-char *custom_strtok(char *str, char *delims)
-{
-return (strtok(str, delims));
 }
 
