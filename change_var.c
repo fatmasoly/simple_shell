@@ -25,7 +25,7 @@ pidString = (char *)malloc(sizeof(char) * 50);
 end_Str = (char *)malloc(sizeof(char) * 600);
 if (!pidString || !end_Str)
 {
-/* Handle memory allocation error */
+/* memory allocation error */
 }
 for (; str[index] != '\0'; ++index)
 end_Str[j++] = str[index++];
@@ -66,7 +66,7 @@ statusString = (char *)malloc(sizeof(char) * 50);
 end_Str = (char *)malloc(sizeof(char) * 600);
 if (!statusString || !end_Str)
 {
-/* Handle memory allocation error */
+/* memory allocation error */
 }
 for (; str[index] != '\0'; ++index)
 {

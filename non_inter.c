@@ -35,7 +35,7 @@ if (arguments[0] && access(arguments[0], F_OK | X_OK) == 0)
 cmd_execution(arguments[0], arguments, &status);
 else if (arguments[0] == NULL)
 {
-/* Do something if the command is missing */
+/* If the command is missing */
 }
 else
 {

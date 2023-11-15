@@ -31,7 +31,8 @@ if (environ[index] == NULL)
 continue;
 }
 environmentCopy = strdup(environ[index]);
-if (environmentCopy == NULL) {
+if (environmentCopy == NULL)
+{
 perror("Error in strdup");
 exit(EXIT_FAILURE);
 }

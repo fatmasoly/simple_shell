@@ -74,7 +74,7 @@ cmd_execution(arguments[0], arguments, status);
 }
 else if (arguments[0] == NULL)
 {
- /* Do something if the command is missing */
+ /* if the command is missing */
 }
 else
 {
