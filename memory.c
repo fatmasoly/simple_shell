@@ -13,7 +13,7 @@ int index = 0;
 if (items == NULL)
 return;
 for (index = 0; items[index] != NULL; ++index)
-free(items[index++]);
+free(items[index]);
 free(items);
 }
 /**

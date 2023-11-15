@@ -20,20 +20,32 @@ int find_in_env(const char *nameToFind)
 char *currentToken = NULL;
 char *environmentCopy = NULL;
 int index = 0;
+if (environ == NULL)
+{
+return (-1);
+}
 for (index = 0; environ[index]; ++index)
 {
+if (environ[index] == NULL)
+{
+continue;
+}
 environmentCopy = strdup(environ[index]);
+if (environmentCopy == NULL) {
+perror("Error in strdup");
+exit(EXIT_FAILURE);
+}
 currentToken = custom_strtok(environmentCopy, "=");
-if (custom_strcmp(currentToken, nameToFind))
+if (currentToken != NULL && custom_strcmp(currentToken, nameToFind) != 0)
 {
 free(environmentCopy);
 return (index);
 }
 free(environmentCopy);
-index++;
 }
-return (index);
+return (-1);
 }
+
 /**
  * _getenv - Retrieves the value of an environment variable.
  *
